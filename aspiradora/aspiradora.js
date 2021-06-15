@@ -26,5 +26,5 @@ ensuciar = () => {
 }
 
 // 0 = dirty - 1 = clean
-var states = ["A","0","1"];
+var states = ["A","DIRTY","CLEAN"];
 verificar(states);

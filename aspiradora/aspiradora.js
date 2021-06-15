@@ -1,16 +1,15 @@
-// MIT License
-// Copyright (c) 2020 Luis Espino
 
-function reflex_agent(location, state){
+function aspirar(location, state){
     if (state=="DIRTY") return "CLEAN";
     else if (location=="A") return "RIGHT";
     else if (location=="B") return "LEFT";
+    ensuciar();
 }
 
-function test(states){
+function verificar(states){
        var location = states[0];		
        var state = states[0] == "A" ? states[1] : states[2];
-       var action_result = reflex_agent(location, state);
+       var action_result = aspirar(location, state);
        document.getElementById("log").innerHTML+="<br>Location: ".concat(location).concat(" | Action: ").concat(action_result);
        if (action_result == "CLEAN"){
          if (location == "A") states[1] = "CLEAN";
@@ -18,8 +17,14 @@ function test(states){
        }
        else if (action_result == "RIGHT") states[0] = "B";
        else if (action_result == "LEFT") states[0] = "A";		
- setTimeout(function(){ test(states); }, 2000);
+ setTimeout(function(){ verificar(states); }, 2000);
 }
 
-var states = ["A","DIRTY","DIRTY"];
-test(states);
+ensuciar = () => {
+  if (Math.floor(Math.random() * 2) == 0) states[1] = "DIRTY";
+  if (Math.floor(Math.random() * 2) == 0) states[2] = "DIRTY";  
+}
+
+// 0 = dirty - 1 = clean
+var states = ["A","0","1"];
+verificar(states);

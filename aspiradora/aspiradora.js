@@ -3,7 +3,7 @@ function aspirar(location, state){
     statusMap.forEach(function(value, key) {
       if (value == states) visitedStates.set(key, true);
     })
-    console.table(visitedStates);
+    console.log(visitedStates);
 
     if (state=="DIRTY") return "CLEAN";
     else if (location=="A") return "RIGHT";
@@ -14,7 +14,7 @@ function verificar(states){
        var location = states[0];		
        var state = states[0] == "A" ? states[1] : states[2];
        var action_result = aspirar(location, state);
-       document.getElementById("log").innerHTML+="<br>Location: ".concat(location).concat(" | Action: ").concat(action_result);
+       document.getElementById("log").innerHTML+="<br>Location: ".concat(location).concat(" | Action: ").concat(action_result).concat(" | STATE: ").concat(states);
        if (action_result == "CLEAN"){
          if (location == "A") states[1] = "CLEAN";
           else if (location == "B") states[2] = "CLEAN";

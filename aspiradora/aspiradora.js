@@ -3,7 +3,6 @@ function aspirar(location, state){
     if (state=="DIRTY") return "CLEAN";
     else if (location=="A") return "RIGHT";
     else if (location=="B") return "LEFT";
-    ensuciar();
 }
 
 function verificar(states){
@@ -16,7 +15,8 @@ function verificar(states){
           else if (location == "B") states[2] = "CLEAN";
        }
        else if (action_result == "RIGHT") states[0] = "B";
-       else if (action_result == "LEFT") states[0] = "A";		
+       else if (action_result == "LEFT") states[0] = "A";
+       ensuciar();		
  setTimeout(function(){ verificar(states); }, 2000);
 }
 

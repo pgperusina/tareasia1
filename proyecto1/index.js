@@ -4,6 +4,6 @@ const estado = params.get("estado");
 
 
 document.addEventListener("DOMContentLoaded", function() {
-    let body = document.getElementsByTagName("body");
+    let body = document.getElementsByTagName("body")[0];
     body.innerHTML = "24";
   });

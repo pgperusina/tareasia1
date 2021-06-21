@@ -44,6 +44,7 @@ function bestfirst(start, end){
 		}
 	}
 	dot += '}'
+    console.log(cont);
 	return dot
 }
 

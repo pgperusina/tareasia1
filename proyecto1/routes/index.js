@@ -1,5 +1,5 @@
 const express = require('express');
-const app = require('../app');
+const url = require('url');
 const router = express.Router();
 
 
@@ -7,11 +7,13 @@ const router = express.Router();
  * Endpoint move
  */
 router.get('/index',  (req, res) => {
-    let turno = req.params.turno
-    let estado = req.params.estado
+    let fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
+    const url = new URL(fullUrl);
+
+    let turno = url.searchParams.get('turno')
+    let estado = url.searchParams.get('estado')
     console.log(turno);
     console.log(estado);
-    let response = { turno: 'turno', estado: 'estado'}
     res.end('24')
     //res.render('pages/index', response)
 })

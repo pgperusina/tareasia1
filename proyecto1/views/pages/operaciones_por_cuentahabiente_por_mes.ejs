@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head'); %>
+</head>
+<body class="container">
+
+<header>
+    <%- include('../partials/header'); %>
+</header>
+
+<div class="jumbotron">
+    <h2 class="text-center">SIST - Sistema de Transacciones Electrónicas</h2>
+    <br>
+    <h4 class="text-center">Operaciones Por Cuentahabiente</h4>
+    <hr>
+
+    <% if (result.date == false) { %>
+        <h5 class="text-center">Cuentahabiente: <%= result.rows[0].nombre %> <%= result.rows[0].apellido %></h5>
+        <br>
+        <form method="POST" action="/operaciones/cuentahabiente/mes">
+            <input type="text" id="cui" name="cui" value="<%= result.rows[0].cui %>" hidden/>
+            <div class="from-group row justify-content-md-center">
+                <label for="mes" class="col-sm-3">Seleccione el mes deseado:</label>
+                <div class="col-sm-3">
+                    <input type="month" class="form-control"
+                           id="mes" name="mes"
+                           min="2000-01" value="2020-05" />
+                </div>
+            </div>
+            <br>
+            <div class="from-group row justify-content-md-center">
+                <button type="submit" class="btn btn-primary btn-block col-sm-6" name="verOperaciones">Ver operaciones</button>
+            </div>
+        </form>
+    <% } else if (result.rowLength > 0) { %>
+        <h5 class="text-center">Cuentahabiente: <%= result.rows[0].nombre_cuentahabiente %> <%= result.rows[0].apellido_cuentahabiente %></h5>
+        <br>
+        <h5 class="text-center">Mes: <%= result.mes %></h5>
+        <div class="col-sm-12">
+            <table id="tabla-operaciones" class="display" cellspacing="0" width="100%">
+                <thead>
+                <tr>
+                    <th class="th-sm">
+                        Nombre
+                    </th>
+                    <th>
+                        Tipo Operación
+                    </th>
+                    <th class="th-sm">
+                        No. Cuenta Paga
+                    </th>
+                    <th class="th-sm">
+                        No. Cuenta Cobra
+                    </th>
+                    <th class="th-sm">
+                        Monto
+                    </th>
+                    <th class="th-sm">
+                        Fecha
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                <% result.rows.forEach(function(row) { %>
+                    <tr>
+                        <td><%= row.nombre_cuentahabiente %> <%= row.apellido_cuentahabiente %></td>
+                        <td><%= row.tipo_operacion %></td>
+                        <td><%= row.no_cuenta_paga %></td>
+                        <td><%= row.no_cuenta_cobra %></td>
+                        <td><%= row.monto %></td>
+                        <td><%= row.fecha %></td>
+                    </tr>
+                <% }); %>
+                </tbody>
+            </table>
+        </div>
+    <% } else { %>
+        <h5 class="text-center">No existen operaciones para el cuentabiente en el mes de <%= result.mes %></h5>
+    <% } %>
+</div>
+
+<script type="text/javascript">
+    $(function(){
+        setDataTable('#tabla-operaciones', 10);
+    });
+</script>
+
+<footer>
+    <%- include('../partials/footer'); %>
+</footer>
+
+</body>
+</html>

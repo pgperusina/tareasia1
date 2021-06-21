@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head'); %>
+</head>
+<body class="container">
+
+<header>
+    <%- include('../partials/header'); %>
+</header>
+
+<div class="jumbotron">
+    <h2 class="text-center">SIST - Sistema de Transacciones Electrónicas</h2>
+    <br>
+    <h4 class="text-center">Ingresar nueva operación</h4>
+
+    <br>
+    <% if (typeof rowResult !=='undefined' && rowResult.error) { %>
+        <h5 class="text-center text-danger"><%= rowResult.error %></h5>
+        <br>
+    <% }%>
+    <% if (typeof rowResult !=='undefined' && rowResult.mensaje) { %>
+        <h5 class="text-center text-success"><%= rowResult.mensaje %></h5>
+        <br>
+    <% } %>
+    <form method="POST" action="/cuentahabiente/operacion">
+        <div class="from-group row justify-content-md-center">
+            <label for="cui" class="col-sm-3">Monto</label>
+            <div class="col-sm-3">
+                <input type="text" class="form-control"
+                       id="monto" name="monto"
+                       placeholder="Ingrese monto" required/>
+            </div>
+        </div><br>
+        <div class="from-group row justify-content-md-center">
+            <label for="cuenta_paga" class="col-sm-3">Cuenta paga</label>
+            <div class="col-sm-3">
+                <input type="text" class="form-control"
+                       id="cuenta_paga" name="cuenta_paga"
+                       placeholder="Ingrese cuenta que paga" required/>
+            </div>
+        </div><br>
+        <div class="from-group row justify-content-md-center">
+            <label for="cuenta_cobra" class="col-sm-3">Cuenta cobra</label>
+            <div class="col-sm-3">
+                <input type="text" class="form-control"
+                       id="cuenta_cobra" name="cuenta_cobra"
+                       placeholder="Ingrese cuenta que cobra" required/>
+            </div>
+        </div>
+<!--        <div class="from-group row justify-content-md-center">-->
+<!--            <label for="tipo_operacion" class="col-sm-3">Tipo operación</label>-->
+<!--            <div class="col-sm-3">-->
+<!--                <select class="form-control"-->
+<!--                        id="tipo_operacion" name="tipo_operacion"-->
+<!--                        required>-->
+<!--                    <option value="Crédito">Crédito</option>-->
+<!--                    <option value="Débito">Débito</option>-->
+<!--                </select>-->
+<!--            </div>-->
+<!--        </div>-->
+        <br>
+        <div class="from-group row justify-content-md-center">
+            <button type="submit" class="btn btn-primary btn-block col-sm-6" name="enviar">Ejecutar operación</button>
+        </div>
+    </form>
+</div>
+
+<footer>
+    <%- include('../partials/footer'); %>
+</footer>
+
+</body>
+</html>

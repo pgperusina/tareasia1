@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head'); %>
+</head>
+<body class="container">
+
+<header>
+    <%- include('../partials/header'); %>
+</header>
+
+<div class="jumbotron">
+    <h2 class="text-center">SIST - Sistema de Transacciones Electrónicas</h2>
+    <br>
+    <h4 class="text-center">Cuentahabientes</h4>
+
+    <div class="col-sm-12">
+        <table id="tabla-cuentahabientes" class="display" cellspacing="0" width="100%">
+            <thead>
+            <tr>
+                <th class="th-sm">
+                    CUI
+                </th>
+                <th>
+                    Nombre
+                </th>
+                <th class="th-sm">
+                    Apellido
+                </th>
+                <th class="th-sm">
+                    Email
+                </th>
+                <th class="th-sm">
+                    Género
+                </th>
+                <th class="th-sm"></th>
+                <th class="th-sm"></th>
+                <th class="th-sm"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <% result.rows.forEach(function(row) { %>
+                <tr>
+                    <td><%= row.cui %></td>
+                    <td><%= row.nombre %></td>
+                    <td><%= row.apellido %></td>
+                    <td><%= row.email %></td>
+                    <td><%= row.genero %></td>
+                    <td>
+                        <button type="button"
+                                class="btn btn-primary h-100 btn-sm"
+                                onclick="verOperacionesCuentaHabiente(<%= row.cui %>)">
+                            Operaciones
+                        </button>
+                    </td>
+                    <td>
+                        <button type="button"
+                                class="btn btn-primary h-100 btn-sm"
+                                onclick="verOperacionesCuentaHabientePorMes(<%= row.cui %>)">
+                            Operaciones Mes
+                        </button>
+                    </td>
+                    <td>
+                        <button type="button"
+                                class="btn btn-primary h-100 btn-sm"
+                                onclick="verCuentas(<%= row.cui %>)">
+                            Cuentas
+                        </button>
+                    </td>
+                </tr>
+            <% }); %>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(function(){
+        setDataTable('#tabla-cuentahabientes', 10);
+    });
+</script>
+
+<footer>
+    <%- include('../partials/footer'); %>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head'); %>
+</head>
+<body class="container">
+
+<header>
+    <%- include('../partials/header'); %>
+</header>
+
+<div class="jumbotron">
+    <h2 class="text-center">SIST - Sistema de Transacciones Electrónicas</h2>
+    <br>
+    <h4 class="text-center">Cuentas cuentahabiente</h4>
+    <hr>
+    <h5 class="text-center">Cuentahabiente: <%= result.rows[0].nombre_cuentahabiente %> <%= result.rows[0].apellido_cuentahabiente %></h5>
+
+
+    <div class="col-sm-12">
+        <table id="tabla-cuentas" class="display" cellspacing="0" width="100%">
+            <thead>
+            <tr>
+                <th class="th-sm">
+                    Numero cuenta
+                </th>
+                <th>
+                    Fecha registro
+                </th>
+                <th class="th-sm">
+                    Entidad
+                </th>
+                <th class="th-sm">
+                    Tipo cuenta
+                </th>
+                <th class="th-sm">
+                    Saldo
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            <% result.rows.forEach(function(row) { %>
+                <tr>
+                    <td><%= row.numero_cuenta %></td>
+                    <td><%= row.fecha_registro %></td>
+                    <td><%= row.nombre_entidad %></td>
+                    <td><%= row.tipo_cuenta %></td>
+                    <td><%= row.saldo_inicial %></td>
+                </tr>
+            <% }); %>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(function(){
+        setDataTable('#tabla-cuentas', 10);
+    });
+</script>
+
+<footer>
+    <%- include('../partials/footer'); %>
+</footer>
+
+</body>
+</html>

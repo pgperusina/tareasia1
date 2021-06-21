@@ -6,4 +6,4 @@ const estado = params.get("estado");
 console.log(turno);
 console.log(estado);
 
-document.body.innerHTML = 24;
+document.body.innerHTML = "24";

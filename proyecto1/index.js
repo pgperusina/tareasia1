@@ -6,4 +6,4 @@ const estado = params.get("estado");
 console.log(turno);
 console.log(estado);
 
-return document.write(24);
+document.write(24);

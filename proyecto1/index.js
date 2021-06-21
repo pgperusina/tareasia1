@@ -6,4 +6,7 @@ const estado = params.get("estado");
 console.log(turno);
 console.log(estado);
 
-document.write("24");
+document.addEventListener("DOMContentLoaded", function() {
+    let body = document.getElementById("body");
+    body.innerHTML = "24";
+  });

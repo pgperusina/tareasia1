@@ -3,10 +3,7 @@ const turno = params.get("turno");
 const estado = params.get("estado");
 
 
-console.log(turno);
-console.log(estado);
-
 document.addEventListener("DOMContentLoaded", function() {
-    let body = document.getElementById("body");
+    let body = document.getElementsByTagName("body");
     body.innerHTML = "24";
   });
